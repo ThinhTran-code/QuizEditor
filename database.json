@@ -1,0 +1,171 @@
+{
+    "name": "New economy toeic test 1",
+    "description": "Test knowledge English",
+    "questions": [
+        {
+            "name": "When filling out the order form, please _____ your address clearly to prevent delays",
+            "description": "Choose the correct awnser",
+            "sortOrder": 1,
+            "options": [
+                {
+                    "value": "A",
+                    "label": "fix",
+                    "sortOrder": 1
+                },
+                {
+                    "value": "B",
+                    "label": "write",
+                    "sortOrder": 2
+                },
+                {
+                    "value": "C",
+                    "label": "send",
+                    "sortOrder": 3
+                },
+                {
+                    "value": "D",
+                    "label": "direct",
+                    "sortOrder": 4
+                }
+            ],
+            "correctOptionValue": [
+                "B"
+            ]
+        },
+        {
+            "name": "Ms. Morgan recruited the individuals that the company _____ for the next three months.",
+            "description": "Choose the correct awnser",
+            "sortOrder": 2,
+            "options": [
+                {
+                    "value": "A",
+                    "label": "will employ",
+                    "sortOrder": 1
+                },
+                 {
+                    "value": "B",
+                    "label": "to employ",
+                    "sortOrder": 2
+                },
+                 {
+                    "value": "C",
+                    "label": "has employed",
+                    "sortOrder": 3
+                },
+                 {
+                    "value": "D",
+                    "label": "employ",
+                    "sortOrder": 4
+                }
+            ],
+            "correctOptionValue": [
+                "A"
+            ]
+        },
+        {
+            "name": "",
+            "description": "",
+            "sortOrder": "",
+            "options": [
+                {
+                    "value": "A",
+                    "label": "",
+                    "sortOrder": 1
+                }
+            ],
+            "correctOptionValue": [
+                "A"
+            ]
+        },
+        {
+            "name": "The contractor had a fifteen-percent _____ in his business after advertising in the local newspaper.",
+            "description": "Choose the correct awnser",
+            "sortOrder": 3,
+            "options": [
+                {
+                    "value": "A",
+                    "label": "experience",
+                    "sortOrder": 1
+                },
+                {
+                    "value": "B",
+                    "label": "growth",
+                    "sortOrder": 2
+                },
+                {
+                    "value": "C",
+                    "label": "formula",
+                    "sortOrder": 3
+                },
+                {
+                    "value": "D",
+                    "label": "incentive",
+                    "sortOrder": 4
+                }
+            ],
+            "correctOptionValue": [
+                "B"
+            ]
+        },
+        {
+            "name": "Participants in the walking tour should gather _____ 533 Bates Road on Saturday morning.",
+            "description": "Choose the correct awnser",
+            "sortOrder": 4,
+            "options": [
+                {
+                    "value": "A",
+                    "label": "with",
+                    "sortOrder": 1
+                },
+                {
+                    "value": "B",
+                    "label": "at",
+                    "sortOrder": 2
+                },
+                {
+                    "value": "C",
+                    "label": "like",
+                    "sortOrder": 3
+                },
+                {
+                    "value": "D",
+                    "label": "among",
+                    "sortOrder": 4
+                }
+            ],
+            "correctOptionValue": [
+                "B"
+            ]
+        },
+        {
+            "name": "The free clinic was founded by a group of doctors to give _____ for various medical conditions.",
+            "description": "Choose the correct awnser",
+            "sortOrder": 5,
+            "options": [
+                {
+                    "value": "A",
+                    "label": "treatment",
+                    "sortOrder": 1
+                },
+                {
+                    "value": "B",
+                    "label": "treat",
+                    "sortOrder": 2
+                },
+                {
+                    "value": "C",
+                    "label": "treated",
+                    "sortOrder": 3
+                },
+                {
+                    "value": "D",
+                    "label": "treating",
+                    "sortOrder": 4
+                }
+            ],
+            "correctOptionValue": [
+                "A"
+            ]
+        }
+    ]
+}
