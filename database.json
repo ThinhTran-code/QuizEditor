@@ -63,21 +63,6 @@
             ]
         },
         {
-            "name": "",
-            "description": "",
-            "sortOrder": "",
-            "options": [
-                {
-                    "value": "A",
-                    "label": "",
-                    "sortOrder": 1
-                }
-            ],
-            "correctOptionValue": [
-                "A"
-            ]
-        },
-        {
             "name": "The contractor had a fifteen-percent _____ in his business after advertising in the local newspaper.",
             "description": "Choose the correct awnser",
             "sortOrder": 3,

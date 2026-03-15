@@ -1,11 +1,15 @@
 export default function QuizForm({ quiz, setQuiz }) {
 
-    //Ham xu ly su kien thay doi ten
+    /**
+     * Hàm bắt event thay đổi name quiz
+     */
     const handleNameChange = (e) => {
         setQuiz({ ...quiz, name: e.target.value });
     };
 
-    //Ham su ly su kien thay doi description
+    /**
+     * Hàm bắt event thay đổi description quiz
+     */
     const handleDescriptionChange = (e) => {
         setQuiz({ ...quiz, description: e.target.value });
     };
@@ -21,7 +25,7 @@ export default function QuizForm({ quiz, setQuiz }) {
                     type="text"
                     value={quiz.name}
                     onChange={handleNameChange}
-                    placeholder="Enter quiz name"
+                    placeholder="Nhập vào tên quiz"
                     style={{ width: "300px" }}
                 />
             </div>
@@ -32,7 +36,7 @@ export default function QuizForm({ quiz, setQuiz }) {
                 <textarea
                     value={quiz.description}
                     onChange={handleDescriptionChange}
-                    placeholder="Enter quiz description"
+                    placeholder="Mô tả quiz"
                     rows="3"
                     style={{ width: "300px" }}
                 />
