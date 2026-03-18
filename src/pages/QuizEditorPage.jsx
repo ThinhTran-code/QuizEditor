@@ -1,73 +1,133 @@
 import { useState } from "react";
-import QuizForm from "../components/QuizForm";
 import QuestionList from "../components/QuestionList";
+import QuestionEditor from "../components/QuizEditor";
+import QuizForm from "../components/QuizForm";
 
 export default function QuizEditorPage() {
 
+  //Lưu giá trị và cập nhật quiz
   const [quiz, setQuiz] = useState({
     name: "",
     description: "",
-    questions: []
+    questions: [],
   });
 
+  const [selectedIndex, setSelectedIndex] = useState(null);
+
+ /**
+  * Hàm tạo bài quiz mới
+  */
+  const handleNewQuiz = () => {
+    const confirmReset = window.confirm(
+      "Bạn muốn tạo quiz mới?"
+    );
+
+    if (!confirmReset) return;
+
+    setQuiz({
+      name: "",
+      description: "",
+      questions: [],
+    });
+
+    setSelectedIndex(null);
+  };
+
   /**
-   * Hàm lấy quiz ra file json
+   * Export quiz hiện tại thành file Json
    */
   const exportQuiz = () => {
-
     const dataStr = JSON.stringify(quiz, null, 2);
-
     const blob = new Blob([dataStr], { type: "application/json" });
-
     const url = URL.createObjectURL(blob);
 
     const link = document.createElement("a");
-
     link.href = url;
-    link.download = "database.json";
+    link.download = "quiz.json";
     link.click();
-
   };
-/**
- * Hàm đưa file json vào thành quiz
- */
-  const importQuiz = (event) => {
 
-    const file = event.target.files[0];
+  /**
+   * Import file Json vào thành quiz
+   */
+  const importQuiz = (e) => {
+    const file = e.target.files[0];
     if (!file) return;
 
     const reader = new FileReader();
 
-    reader.onload = (e) => {
-      const data = JSON.parse(e.target.result);
+    reader.onload = (event) => {
+      const data = JSON.parse(event.target.result);
       setQuiz(data);
+      setSelectedIndex(0);
     };
 
     reader.readAsText(file);
-
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="h-screen flex flex-col bg-gray-50">
+      
+      <div className="flex justify-between items-center px-6 py-4 bg-white border-b">
+        <h1 className="text-xl font-semibold">Quiz Editor</h1>
 
-      <h1>Quiz Editor</h1>
+        <div className="flex gap-3">
+          <button
+            onClick={handleNewQuiz}
+            className="px-4 py-2 border rounded-full hover:bg-gray-100"
+          >
+            New Quiz
+          </button>
 
-      <button onClick={exportQuiz}>
-        Export Quiz JSON
-      </button>
-
-      <div style={{ marginTop: "10px", marginBottom: "20px" }}>
-        <input
-          type="file"
-          accept=".json"
-          onChange={importQuiz}
-        />
+          <label className="px-4 py-2 bg-blue-900 text-white rounded-full cursor-pointer">
+            Import JSON
+            <input
+              type="file"
+              accept=".json"
+              onChange={importQuiz}
+              className="hidden"
+            />
+          </label>
+        </div>
       </div>
 
-      <QuizForm quiz={quiz} setQuiz={setQuiz} />
+      <div className="flex flex-1 overflow-hidden">
+        
+        <div className="w-1/4 border-r bg-white p-4 overflow-y-auto">
+          <QuestionList
+            quiz={quiz}
+            setQuiz={setQuiz}
+            selectedIndex={selectedIndex}
+            setSelectedIndex={setSelectedIndex}
+          />
+        </div>
 
-      <QuestionList quiz={quiz} setQuiz={setQuiz} />
+        <div className="w-2/4 p-6 overflow-y-auto">
+          {selectedIndex !== null && quiz.questions[selectedIndex] ? (
+            <QuestionEditor
+              question={quiz.questions[selectedIndex]}
+              questionIndex={selectedIndex}
+              quiz={quiz}
+              setQuiz={setQuiz}
+            />
+          ) : (
+            <div className="text-gray-400 text-center mt-20">
+              Select a question to edit
+            </div>
+          )}
+        </div>
 
+       
+        <div className="w-1/4 border-l bg-white p-6">
+          <QuizForm quiz={quiz} setQuiz={setQuiz} />
+          <button
+            onClick={exportQuiz}
+            className="w-full mt-3 border py-2 rounded-full"
+          >
+            Export JSON
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

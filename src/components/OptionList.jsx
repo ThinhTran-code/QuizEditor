@@ -1,44 +1,51 @@
 import OptionItem from "./OptionItem";
 
-export default function OptionList({ question, questionIndex, quiz, setQuiz }) {
+export default function OptionList({
+  question,
+  questionIndex,
+  quiz,
+  setQuiz,
+}) {
 
   /**
-   * Hàm thêm các câu trả lời của question
+   * Hàm thêm các lựa chọn đáp án
    */
   const addOption = () => {
-    const newOption = {
+    const updated = [...quiz.questions];
+
+    updated[questionIndex].options.push({
       value: "",
       label: "",
-      sortOrder: question.options.length + 1
-    };
-    const updateQuestions = [...quiz.questions];
-    updateQuestions[questionIndex].options = [
-      ...updateQuestions[questionIndex].options, newOption
-    ];
-    setQuiz({ ...quiz, questions: updateQuestions })
-  }
+      sortOrder:
+        updated[questionIndex].options.length + 1,
+    });
+
+    setQuiz({ ...quiz, questions: updated });
+  };
+
   return (
-    <div style={{ marginTop: "15px" }}>
+    <div>
+      <h3 className="font-semibold mb-2">
+        ANSWERS
+      </h3>
 
-      <h4>Options</h4>
-
-      <button onClick={addOption}>Add Option</button>
-
-      {question.options.length === 0 && (
-        <p>No options yet</p>
-      )}
-
-      {question.options.map((option, index) => (
+      {question.options.map((opt, i) => (
         <OptionItem
-          key={index}
-          option={option}
-          optionIndex={index}
+          key={i}
+          option={opt}
+          optionIndex={i}
           questionIndex={questionIndex}
           quiz={quiz}
           setQuiz={setQuiz}
         />
       ))}
 
+      <button
+        onClick={addOption}
+        className="mt-3 px-4 py-2 border rounded-full"
+      >
+        Add Option
+      </button>
     </div>
   );
 }

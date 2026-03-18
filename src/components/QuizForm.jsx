@@ -1,47 +1,32 @@
 export default function QuizForm({ quiz, setQuiz }) {
+  return (
+    <div>
 
-    /**
-     * Hàm bắt event thay đổi name quiz
-     */
-    const handleNameChange = (e) => {
-        setQuiz({ ...quiz, name: e.target.value });
-    };
+      <div className="mb-3">
+        <label className="text-sm text-gray-500">
+          QUIZ NAME
+        </label>
+        <input
+          className="w-full border rounded-lg p-2 mt-1"
+          value={quiz.name}
+          onChange={(e) =>
+            setQuiz({ ...quiz, name: e.target.value })
+          }
+        />
+      </div>
 
-    /**
-     * Hàm bắt event thay đổi description quiz
-     */
-    const handleDescriptionChange = (e) => {
-        setQuiz({ ...quiz, description: e.target.value });
-    };
-    return (
-
-        //Layout
-        <div style={{ marginBottom: "20px" }}>
-
-            <div style={{ marginBottom: "10px" }}>
-                <label>Quiz Name:</label>
-                <br />
-                <input
-                    type="text"
-                    value={quiz.name}
-                    onChange={handleNameChange}
-                    placeholder="Nhập vào tên quiz"
-                    style={{ width: "300px" }}
-                />
-            </div>
-
-            <div>
-                <label>Description:</label>
-                <br />
-                <textarea
-                    value={quiz.description}
-                    onChange={handleDescriptionChange}
-                    placeholder="Mô tả quiz"
-                    rows="3"
-                    style={{ width: "300px" }}
-                />
-            </div>
-
-        </div>
-    );
+      <div>
+        <label className="text-sm text-gray-500">
+          DESCRIPTION
+        </label>
+        <textarea
+          className="w-full border rounded-lg p-2 mt-1"
+          value={quiz.description}
+          onChange={(e) =>
+            setQuiz({ ...quiz, description: e.target.value })
+          }
+        />
+      </div>
+    </div>
+  );
 }
