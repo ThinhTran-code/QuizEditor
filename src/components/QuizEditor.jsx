@@ -1,3 +1,5 @@
+import { MdDelete } from "react-icons/md";
+
 import OptionList from "./OptionList";
 
 export default function QuestionEditor({
@@ -14,12 +16,23 @@ export default function QuestionEditor({
     setQuiz({ ...quiz, questions: updated });
   };
 
-
+/**
+ * Hàm xoá question
+ */
   const handleDeleteQuestion = () => {
-    const updated = quiz.questions.filter((_, i) => i !== questionIndex);
+  const confirmDelete = window.confirm("Delete this question?");
+  if (!confirmDelete) return;
 
-    setQuiz({ ...quiz, questions: updated });
-  };
+  // xoá question
+  let updated = quiz.questions.filter((_, i) => i !== questionIndex);
+
+  updated = updated.map((q, index) => ({
+    ...q,
+    sortOrder: index + 1,
+  }));
+
+  setQuiz({ ...quiz, questions: updated });
+};
 
   return (
     <div className="bg-white p-6 rounded-xl border">
@@ -31,7 +44,7 @@ export default function QuestionEditor({
           onClick={handleDeleteQuestion}
           className="text-red-500 text-sm hover:underline"
         >
-          DELETE QUESTION
+          <MdDelete />
         </button>
       </div>
 

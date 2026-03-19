@@ -14,9 +14,9 @@ export default function QuizEditorPage() {
 
   const [selectedIndex, setSelectedIndex] = useState(null);
 
- /**
-  * Hàm tạo bài quiz mới
-  */
+  /**
+   * Hàm tạo bài quiz mới
+   */
   const handleNewQuiz = () => {
     const confirmReset = window.confirm(
       "Bạn muốn tạo quiz mới?"
@@ -65,9 +65,23 @@ export default function QuizEditorPage() {
     reader.readAsText(file);
   };
 
+  /**
+   * Validate phải nhập đủ data
+   */
+  const isValidQuiz = () => {
+    if (!quiz.name.trim()) return false;
+
+    for (let q of quiz.questions) {
+      if (!q.name.trim()) return false;
+      if (q.options.length < 2) return false;
+      if (q.correctOptionValue.length < 1) return false;
+    }
+
+    return true;
+  };
   return (
     <div className="h-screen flex flex-col bg-gray-50">
-      
+
       <div className="flex justify-between items-center px-6 py-4 bg-white border-b">
         <h1 className="text-xl font-semibold">Quiz Editor</h1>
 
@@ -92,7 +106,7 @@ export default function QuizEditorPage() {
       </div>
 
       <div className="flex flex-1 overflow-hidden">
-        
+
         <div className="w-1/4 border-r bg-white p-4 overflow-y-auto">
           <QuestionList
             quiz={quiz}
@@ -117,12 +131,16 @@ export default function QuizEditorPage() {
           )}
         </div>
 
-       
+
         <div className="w-1/4 border-l bg-white p-6">
           <QuizForm quiz={quiz} setQuiz={setQuiz} />
           <button
             onClick={exportQuiz}
-            className="w-full mt-3 border py-2 rounded-full"
+            disabled={!isValidQuiz()}
+            className={`w-full mt-3 py-2 rounded-full ${isValidQuiz()
+                ? "bg-blue-900 text-white"
+                : "bg-gray-300 text-gray-500 cursor-not-allowed"
+              }`}
           >
             Export JSON
           </button>

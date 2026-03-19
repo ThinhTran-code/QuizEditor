@@ -17,8 +17,15 @@ export default function QuestionList({
       correctOptionValue: [],
     };
 
-    setQuiz({ ...quiz, questions: [...quiz.questions, newQuestion] });
-    setSelectedIndex(quiz.questions.length);
+    const updated = [...quiz.questions, newQuestion];
+
+
+    const reOrdered = updated.map((q, index) => ({
+      ...q,
+      sortOrder: index + 1,
+    }));
+
+    setQuiz({ ...quiz, questions: reOrdered });
   };
 
   return (
@@ -29,9 +36,10 @@ export default function QuestionList({
         <div
           key={i}
           onClick={() => setSelectedIndex(i)}
-          className={`border rounded-lg p-3 mb-2 cursor-pointer ${
-            selectedIndex === i ? "bg-blue-50 border-blue-500" : ""
-          }`}
+          className={`p-2 rounded cursor-pointer ${selectedIndex === i
+            ? "bg-blue-100"
+            : "hover:bg-gray-100"
+            }`}
         >
           <p className="text-sm text-gray-500">
             {i + 1}. Sort Order

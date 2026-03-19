@@ -9,6 +9,7 @@ export default function QuizForm({ quiz, setQuiz }) {
         <input
           className="w-full border rounded-lg p-2 mt-1"
           value={quiz.name}
+          placeholder="Quiz name"
           onChange={(e) =>
             setQuiz({ ...quiz, name: e.target.value })
           }
@@ -22,6 +23,7 @@ export default function QuizForm({ quiz, setQuiz }) {
         <textarea
           className="w-full border rounded-lg p-2 mt-1"
           value={quiz.description}
+          placeholder="Description name"
           onChange={(e) =>
             setQuiz({ ...quiz, description: e.target.value })
           }
